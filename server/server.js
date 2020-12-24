@@ -1,9 +1,12 @@
 require('dotenv').config();
 const express = require('express');
+const app = express()
+const server = require('http').createServer(app)
 const cors = require('cors');
-
 const port = process.env.PORT;
-const app = express();
+const socket = require('./lib/socket')
+
+const io = require('socket.io')(server)
 
 require('./config/mongo.config');
 
@@ -21,6 +24,8 @@ app.get('/*', (req, res) => {
 app.get('*', (req, res) => {
   res.sendStatus(404);
 });
+
+socket(io)
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

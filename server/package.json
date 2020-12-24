@@ -2,10 +2,10 @@
   "name": "noesk",
   "version": "1.0.0",
   "description": "restaurant-chain-management",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server"
+    "test": "nodemon server",
+    "start": "nodemon server"
   },
   "author": "Jonas & Deborah",
   "license": "ISC",
@@ -13,6 +13,8 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "mongoose": "^5.11.8"
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.11.8",
+    "socket.io": "^3.0.4"
   }
 }
