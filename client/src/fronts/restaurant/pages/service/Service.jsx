@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
 import TableCard from './components/ui/TableCard';
 import Table from './Table';
-// import './styles/service.scss'
+import './styles/service.scss'
 
 function Service() {
   const [restaurantData, setRestaurantData] = useState([]);
