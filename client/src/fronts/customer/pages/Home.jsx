@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
-import { useParams } from 'react-router-dom';
+import {useParams} from 'react-router-dom';
 import Categories from './components/Categories';
 import MenuItems from './components/MenuItems';
 import Orders from './Orders';
-import { axiosGet } from '../../shared/helpers/api';
+import {axiosGet} from '../../shared/helpers/api';
 
-function Home({ pageMode, setPageMode, getSessionData, sessionData, cartData }) {
+function Home({pageMode, setPageMode, getSessionData, sessionData, cartData}) {
   const [menuData, setMenuData] = useState([]);
   const [categoryHeaderPos, setCategoryHeaderPos] = useState('100');
-  const { tableno } = useParams();
+  const {tableno} = useParams();
 
   async function getMenu() {
-    const res = await axiosGet('http://localhost:8080/api/dishes');
+    const res = await axiosGet('http://localhost:80/api/dishes');
     setMenuData(res.menuItems);
   }
 
   function openCategory(category) {
-    setPageMode({ mode: 'menuitems', category });
+    setPageMode({mode: 'menuitems', category});
     setCategoryHeaderPos('15');
     window.scrollTo({
       top: 0,
@@ -29,24 +29,25 @@ function Home({ pageMode, setPageMode, getSessionData, sessionData, cartData }) 
   useEffect(() => {
     getMenu();
     getSessionData(tableno);
-  },[getSessionData, tableno]);
+  }, []);
 
-  if (pageMode.mode === 'menuitems') {
-    return (
-      <MenuItems
-        pageMode={pageMode}
-        menuData={menuData}
-        categoryHeaderPos={categoryHeaderPos}
-        cartData={cartData}
-        sessionId={sessionData._id}
-        getSessionData={getSessionData}
-      />
-    );
+  switch (pageMode.mode) {
+    case 'menuitems':
+      return (
+        <MenuItems
+          pageMode={pageMode}
+          menuData={menuData}
+          categoryHeaderPos={categoryHeaderPos}
+          cartData={cartData}
+          sessionId={sessionData._id}
+          getSessionData={getSessionData}
+        />
+      );
+    case 'orders':
+      return <Orders sessionData={sessionData} pageMode={pageMode}/>;
+    default:
+      return <Categories openCategory={openCategory} menuData={menuData}/>;
   }
-  if (pageMode.mode === 'orders') {
-    return <Orders sessionData={sessionData} pageMode={pageMode} />;
-  }
-  return <Categories openCategory={openCategory} menuData={menuData} />;
 }
 
 Home.propTypes = {

@@ -1,0 +1,280 @@
+@import '../../../../shared/styles/variables';
+@import "../../../../shared/styles/mixins";
+@import "../../../../shared/styles/main";
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Ultra&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@300;400;500;600;700&display=swap");
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: $sv-bg;
+}
+
+.container {
+  @include flex-c-c;
+}
+
+.tables-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+  width: 90vw;
+}
+
+.table-card {
+  @include sv-card-border;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 250px;
+  min-width: 300px;
+}
+
+button {
+  cursor: pointer;
+
+  &.expand-session {
+    background-color: $sv-purple;
+  }
+
+  &.end-session {
+    background-color: $sv-red;
+  }
+}
+
+.table-header {
+  @include flex-sb-c;
+  height: 50px;
+  //background-color: $sv-pill-bg;
+  border-bottom: $sv-border 1px solid;
+  padding: 0 0 0 10px;
+
+  h3 {
+    @include margin-padding-0;
+    @include roboto;
+    font-size: 15px;
+    font-weight: 600;
+    color: $sv-header;
+
+    &.inactive {
+      color: rgba($sv-header, 0.3);
+    }
+  }
+
+  .notifications {
+    display: flex;
+    flex-direction: row-reverse;
+    padding-right: 10px;
+
+    .fa-icon {
+      color: rgba($sv-orange, 0.5);
+    }
+  }
+}
+
+.table-body {
+  @include flex-sa-c;
+  height: 100%;
+  flex-direction: column;
+
+  &.no-session {
+    @include flex-c-c;
+  }
+}
+
+.table-row {
+  @include flex-sb-c;
+  width: 90%;
+}
+
+p {
+  @include roboto;
+  @include margin-padding-0;
+}
+
+h4 {
+  @include roboto;
+  @include margin-padding-0;
+}
+
+.table-page {
+  h3 {
+    @include margin-padding-0;
+    font-size: 50px;
+  }
+}
+
+.order-display {
+  width: 100px;
+  height: 80px;
+  border: #363b59 1px solid;
+  border-radius: 10px;
+  padding: 10px;
+  max-width: 25%;
+
+  h4 {
+    font-size: 30px;
+  }
+
+  p {
+    font-size: 13px;
+    color: rgba($sv-header, 0.5);
+  }
+
+  &.zero {
+    h4 {
+      color: $sv-pill-bg;
+    }
+  }
+
+  &.completed {
+    h4 {
+      color: $sv-green;
+    }
+
+    p {
+    }
+  }
+
+  &.in-progress {
+    h4 {
+      color: $sv-purple;
+    }
+  }
+
+  &.requests {
+    h4 {
+      color: $sv-orange;
+    }
+  }
+}
+
+.plus-button-wrapper {
+  @include flex-c-c;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+
+  &:hover .plus-button {
+    color: $sv-purple;
+  }
+
+  .plus-button {
+    color: $sv-pill-bg;
+    font-size: 70px;
+  }
+}
+
+.orders-container {
+  display: flex;
+  width: 80vw;
+  overflow: scroll;
+}
+
+::-webkit-scrollbar {
+  width: 0; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
+}
+
+.order-column {
+  @include sv-card-border;
+  min-width: 300px;
+  max-width: 300px;
+  min-height: 500px;
+  margin: 0 15px 0 0;
+  padding: 20px 20px 50px 20px;
+
+  .header {
+    @include flex-sb-c;
+
+    h4 {
+      font-size: 20px;
+    }
+  }
+
+  .column-body {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  button {
+    color: black;
+    background-color: $sv-green;
+  }
+}
+
+.order-items-container {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.order-item-card {
+  @include flex-sb-c;
+  height: 30px;
+
+  .dish-name-wrapper {
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .quantity-progress {
+    @include flex-sb-c;
+    width: 35%;
+  }
+}
+
+ul {
+  list-style-type: none;
+  @include margin-padding-0;
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: $sv-purple;
+}
+
+.navlink {
+  text-decoration: none;
+  display: inline;
+  width: 50%;
+  padding: 12px;
+  border: 1px solid $sv-border;
+  text-align: center;
+  color: $sv-purple;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+ul {
+  list-style-type: none;
+  @include margin-padding-0;
+  width: 100vw;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: $sv-purple;
+}
+
+.row {
+  @include flex-sb-c;
+}
+
+.btn-sm {
+  padding: 6px;
+  background-color: $sv-purple !important;
+  font-size: smaller;
+}

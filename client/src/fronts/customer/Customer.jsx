@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Cart from './pages/components/Cart';
 import Topbar from './pages/components/ui/Topbar';
 import Checkout from './pages/Checkout';
+import { BrowserView, MobileView, isBrowser, isMobile} from 'react-device-detect'
 
 function Customer() {
   const [sessionData, setSessionData] = useState({});
@@ -16,7 +17,8 @@ function Customer() {
 
   // FUNCTION CALL TO RE-RENDER
   async function getSessionData(tableno) {
-    const res = await axiosGet(`http://localhost:8080/api/tables/${tableno}`);
+    const res = await axiosGet(`http://localhost:80/api/tables/${tableno}`);
+    console.log(res)
     setSessionData(res.table.session);
   }
 
@@ -44,47 +46,43 @@ function Customer() {
 
   return (
     <div className="customer-container">
-
       <div className="main-div">
         {backdrop}
         <div className="ui-wrapper">
           <Topbar goHome={goHome} goOrders={goOrders}/>
-          <Switch>
-            {/*<>*/}
-              {/*<Route path="/customer">*/}
-              {/*  <NavLink to="/table/1">*/}
-              {/*    <p>Table 1</p>*/}
-              {/*  </NavLink>*/}
-              {/*  <NavLink to="/table/2">*/}
-              {/*    <p>Table 2</p>*/}
-              {/*  </NavLink>*/}
-              {/*  <NavLink to="/table/3">*/}
-              {/*    <p>Table 3</p>*/}
-              {/*  </NavLink>*/}
-              {/*  <NavLink to="/table/4">*/}
-              {/*    <p>Table 4</p>*/}
-              {/*  </NavLink>*/}
-              {/*  <NavLink to="/table/5">*/}
-              {/*    <p>Table 5</p>*/}
-              {/*  </NavLink>*/}
-              {/*  <NavLink to="/table/6">*/}
-              {/*    <p>Table 6</p>*/}
-              {/*  </NavLink>*/}
-              {/*  <NavLink to="/table/7">*/}
-              {/*    <p>Table 7</p>*/}
-              {/*  </NavLink>*/}
-              {/*  <NavLink to="/table/8">*/}
-              {/*    <p>Table 8</p>*/}
-              {/*  </NavLink>*/}
-              {/*  <NavLink to="/table/9">*/}
-              {/*    <p>Table 9</p>*/}
-              {/*  </NavLink>*/}
-              {/*  <NavLink to="/table/10">*/}
-              {/*    <p>Table 10</p>*/}
-              {/*  </NavLink>*/}
-              {/*</Route>*/}
-            {/*</>*/}
-            <Route path="/table/:tableno">
+            <Route path="/customer/tables">
+              <NavLink to="/customer/table/1">
+                <p>Table 1</p>
+              </NavLink>
+              <NavLink to="/customer/table/2">
+                <p>Table 2</p>
+              </NavLink>
+              <NavLink to="/customer/table/3">
+                <p>Table 3</p>
+              </NavLink>
+              <NavLink to="/customer/table/4">
+                <p>Table 4</p>
+              </NavLink>
+              <NavLink to="/customer/table/5">
+                <p>Table 5</p>
+              </NavLink>
+              <NavLink to="/customer/table/6">
+                <p>Table 6</p>
+              </NavLink>
+              <NavLink to="/customer/table/7">
+                <p>Table 7</p>
+              </NavLink>
+              <NavLink to="/customer/table/8">
+                <p>Table 8</p>
+              </NavLink>
+              <NavLink to="/customer/table/9">
+                <p>Table 9</p>
+              </NavLink>
+              <NavLink to="/customer/table/10">
+                <p>Table 10</p>
+              </NavLink>
+            </Route>
+            <Route path="/customer/table/:tableno">
               <Home
                 setPageMode={setPageMode}
                 pageMode={pageMode}
@@ -99,10 +97,10 @@ function Customer() {
                 pageMode={pageMode}
               />
             </Route>
-            <Route path="/checkout">
-              <Checkout />
+            <Route path="/customer/checkout">
+              <Checkout/>
             </Route>
-          </Switch>
+
         </div>
       </div>
     </div>
