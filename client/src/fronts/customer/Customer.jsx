@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import {Route, Switch, NavLink, useRouteMatch} from 'react-router-dom';
+import './styles/menu.scss'
 import {axiosGet} from '../shared/helpers/api';
 import Home from './pages/Home';
 import Cart from './pages/components/Cart';
 import Topbar from './pages/components/ui/Topbar';
 import Checkout from './pages/Checkout';
-import './styles/menu.scss'
+
 import { BrowserView, MobileView, isBrowser, isMobile} from 'react-device-detect'
 
 function Customer() {
