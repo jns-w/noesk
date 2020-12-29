@@ -3,7 +3,7 @@ const router = require('express').Router();
 const Table = require('../models/table.models');
 
 /**
- * GET ALL TABLES - for service side
+ * GET ALL TABLES - for restaurant side
  * @method GET
  * @route /api/tables
  * @returns list of all tables with sessions populated

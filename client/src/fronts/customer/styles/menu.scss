@@ -77,7 +77,7 @@ h5 {
     justify-content: flex-start;
     width: 375px;
     height: 812px;
-    overflow: hidden;
+    overflow: scroll;
   }
 }
 
@@ -313,7 +313,7 @@ h5 {
   flex-direction: column;
   margin: 0;
   background-color: rgba(255, 255, 255, 0.97);
-  width: 100%;
+  width: 375px;
   border-radius: 30px 30px 5px 5px;
   bottom: -60vh;
   height: 70vh;
