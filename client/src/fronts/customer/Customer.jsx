@@ -1,15 +1,17 @@
 import React, {useState, useEffect} from 'react';
-import {Route, Switch, NavLink} from 'react-router-dom';
+import {Route, Switch, NavLink, useRouteMatch} from 'react-router-dom';
 import {axiosGet} from '../shared/helpers/api';
 import Home from './pages/Home';
 import Cart from './pages/components/Cart';
 import Topbar from './pages/components/ui/Topbar';
 import Checkout from './pages/Checkout';
+import './styles/menu.scss'
 import { BrowserView, MobileView, isBrowser, isMobile} from 'react-device-detect'
 
 function Customer() {
   const [sessionData, setSessionData] = useState({});
   const [pageMode, setPageMode] = useState({mode: 'home', category: ''});
+  let { path, url } = useRouteMatch()
 
   function goHome() {
     setPageMode({mode: 'home', category: ''});
@@ -50,7 +52,7 @@ function Customer() {
         {backdrop}
         <div className="ui-wrapper">
           <Topbar goHome={goHome} goOrders={goOrders}/>
-            <Route path="/customer/tables">
+            <Route path={`${path}/tables`}>
               <NavLink to="/customer/table/1">
                 <p>Table 1</p>
               </NavLink>
